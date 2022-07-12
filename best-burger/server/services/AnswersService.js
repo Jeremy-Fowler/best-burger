@@ -7,8 +7,8 @@ class AnswersService {
   }
 
   async create(body) {
-    body.answers.forEach(async a => {
-      await dbContext.Answers.create({ pollId: body.id, title: a.title })
+    await body.answers.forEach(async a => {
+      await dbContext.Answers.create({ pollId: body.id, title: a })
     });
   }
 

@@ -14,7 +14,7 @@ export class PollsController extends BaseController {
       .get('/:id/votes', this.getVotesByPollId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
-      .delete('', this.close)
+      .delete('/:id', this.close)
   }
   async getAll(req, res, next) {
     try {

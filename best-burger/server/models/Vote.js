@@ -11,7 +11,7 @@ export const VoteSchema = new Schema(
 )
 
 VoteSchema.virtual('account', {
-  localField: 'creatorId',
+  localField: 'accountId',
   foreignField: '_id',
   justOne: true,
   ref: 'Account'

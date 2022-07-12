@@ -1,8 +1,13 @@
 import { dbContext } from "../db/DbContext"
 import { BadRequest } from "../utils/Errors"
+import { pollsService } from "./PollsService"
 
 class VotesService {
   async create(body) {
+    const poll = await pollsService.getById(body.pollId)
+    if (!poll.isOpen) {
+      throw new BadRequest('Poll is already closed')
+    }
     const foundVote = await dbContext.Votes.findOne({ pollId: body.pollId, accountId: body.accountId })
     if (foundVote && foundVote.answerId.toString() == body.answerId) {
       throw new BadRequest('Already voted for this answer')

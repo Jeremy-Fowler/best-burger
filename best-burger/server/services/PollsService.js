@@ -17,6 +17,7 @@ class PollsService {
   async create(body) {
     const poll = await dbContext.Polls.create(body)
     await poll.populate('creator', 'name picture')
+    body.id = poll.id
     await answersService.create(body)
     return poll
   }
