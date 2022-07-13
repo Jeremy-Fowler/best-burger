@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row mt-3">
-      <div class="col-md-6" v-for="p in polls" :key="p.id">
+      <div class="col-md-6 mb-3" v-for="p in polls" :key="p.id">
         <Poll :poll="p" />
       </div>
     </div>

@@ -11,9 +11,8 @@ class VotesService {
 
   async create(body) {
     const res = await api.post('api/votes', body)
-    logger.log(res.data)
-    AppState.votes = AppState.votes.filter(v => v.accountId !== AppState.account.id)
-    AppState.votes.push(res.data)
+    // AppState.votes = AppState.votes.filter(v => v.accountId !== AppState.account.id)
+    // AppState.votes.push(res.data)
   }
 }
 

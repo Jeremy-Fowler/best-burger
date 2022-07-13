@@ -38,8 +38,9 @@ import { logger } from '../utils/Logger'
 import { pollsService } from '../services/PollsService'
 import { answersService } from '../services/AnswersService'
 import { votesService } from '../services/VotesService'
-import { useRoute } from 'vue-router'
+import { onBeforeRouteLeave, useRoute } from 'vue-router'
 import { AppState } from '../AppState'
+import { socketService } from '../services/SocketService'
 export default {
 
   setup() {
@@ -51,11 +52,16 @@ export default {
           await pollsService.getById(route.params.id)
           await answersService.getAnswersByPollId(route.params.id)
           await votesService.getVotesByPollId(route.params.id)
+          socketService.joinRoom(route.params.id)
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
         }
       }
+    })
+    onBeforeRouteLeave((to, from, next) => {
+      socketService.leaveRoom(route.params.id)
+      next()
     })
     return {
       poll: computed(() => AppState.activePoll),
