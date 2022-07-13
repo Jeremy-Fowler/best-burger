@@ -1,6 +1,6 @@
 <template>
   <router-link :to="{ name: 'Poll', params: { id: poll.id } }">
-    <div class="bg-light text-dark shadow rounded d-flex selectable">
+    <div class="bg-light text-dark shadow rounded d-flex selectable mb-3">
       <img
         :src="poll.creator?.picture"
         alt=""

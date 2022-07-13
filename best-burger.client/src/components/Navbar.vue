@@ -19,18 +19,23 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
-          <router-link
-            :to="{ name: 'About' }"
-            class="btn text-success lighten-30 selectable text-uppercase"
+          <button
+            class="btn btn-success"
+            data-bs-toggle="modal"
+            data-bs-target="#poll-modal"
           >
-            About
-          </router-link>
+            Create Survey
+          </button>
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
   </nav>
+  <Modal id="poll-modal">
+    <template #modal-title>Create Poll</template>
+    <template #modal-body><PollForm /></template>
+  </Modal>
 </template>
 
 <script>

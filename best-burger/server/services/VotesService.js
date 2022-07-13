@@ -8,6 +8,7 @@ class VotesService {
     if (!poll.isOpen) {
       throw new BadRequest('Poll is already closed')
     }
+    // NOTE findOneAndUpdate({_id: id}, body, {upsert: true, new true})
     const foundVote = await dbContext.Votes.findOne({ pollId: body.pollId, accountId: body.accountId })
     if (foundVote && foundVote.answerId.toString() == body.answerId) {
       throw new BadRequest('Already voted for this answer')

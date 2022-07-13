@@ -12,13 +12,17 @@ class PollsService {
   }
   async getAll() {
     const res = await api.get('api/polls')
-    logger.log(res.data)
     AppState.polls = res.data
   }
   async getById(id) {
     const res = await api.get('api/polls/' + id)
-    logger.log(res.data)
     AppState.activePoll = res.data
+  }
+
+  async create(body) {
+    const res = await api.post('api/polls', body)
+    logger.log(res.data)
+    AppState.polls.push(res.data)
   }
 }
 
